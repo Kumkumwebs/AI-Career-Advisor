@@ -1,0 +1,25 @@
+<h2>All Submissions</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Skills</th>
+        <th>Resume</th>
+        <th>Date</th>
+    </tr>
+    {% for s in submissions %}
+    <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.email }}</td>
+        <td>{{ s.skills }}</td>
+        <td>
+            {% if s.resume %}
+                <a href="{{ s.resume.url }}">Download</a>
+            {% else %}
+                No file
+            {% endif %}
+        </td>
+        <td>{{ s.created_at }}</td>
+    </tr>
+    {% endfor %}
+</table>

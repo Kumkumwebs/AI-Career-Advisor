@@ -1,0 +1,39 @@
+{% extends "career_advisor/base.html" %}
+
+{% block title %}Submit Resume - AI Career Advisor{% endblock %}
+
+{% block content %}
+<h2 class="text-center">Submit Your Resume For Future Openings</h2>
+
+<!-- Success Message -->!
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success mt-3">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+<!-- Resume Form -->
+<div class="card p-4 mt-4">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit Resume</button>
+    </form>
+</div>
+
+<!-- Recently Submitted Resumes -->
+<!--<div class="mt-5">
+    <h4>Recently Submitted Resumes</h4>
+    {% if recent_resumes %}
+        <ul class="list-group">
+            {% for resume in recent_resumes %}
+                <li class="list-group-item">
+                    {{ resume.name }} — {{ resume.submitted_at|date:"M d, Y H:i" }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No resumes submitted yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

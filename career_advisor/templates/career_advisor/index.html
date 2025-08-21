@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - AI Career Advisor{% endblock %}
+
+{% block content %}
+<h1 class="text-center">Welcome to AI Career Advisor!</h1>
+<p class="text-center">Your personalized career guidance platform.</p>
+
+<!-- Skills Form -->
+<div class="card p-4 mt-4">
+    <h4>Enter Your Skills & Interests</h4>
+    <form method="POST" action="{% url 'recommend' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="skills" class="form-label">Skills & Interests</label>
+            <textarea class="form-control" id="skills" name="skills" rows="3" placeholder="e.g., Python, Data Analysis, Web Development"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Get Career Suggestions</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'career_advisor/base.html' %}
+{% load static %}
+
+{% block title %}Home - AI Career Advisor{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+  <!-- Hero Section -->
+  <div class="text-center mb-5">
+    <h1 class="display-4">Welcome to AI Career Advisor</h1>
+    <p class="lead">
+      Discover career paths based on your skills or resume. Get personalized future job recommendations!
+    </p>
+  </div>
+
+  <!-- Skills / Resume Form -->
+  <div class="row justify-content-center mb-5">
+    <div class="col-md-8">
+      <div class="card p-4 mb-3 shadow-sm">
+        <h4 class="mb-3">Enter your skills (comma separated) or upload resume</h4>
+        <form method="post" enctype="multipart/form-data" action="{% url 'recommend' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="skills" class="form-label">Skills</label>
+            <textarea id="skills" name="skills" class="form-control" rows="3" placeholder="e.g., Python, Django, SQL">{{ skills|default:'' }}</textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="resume" class="form-label">Or Upload Resume (PDF / DOCX / TXT)</label>
+            <input type="file" name="resume" id="resume" class="form-control">
+          </div>
+
+          <button class="btn btn-primary" type="submit">Get Career Suggestions</button>
+        </form>
+      </div>
+
+      {% if recommendations %}
+        <div class="card p-3 shadow-sm">
+          <h5>Recommended Careers</h5>
+          <ul class="list-group mb-3">
+            {% for rec in recommendations %}
+              <li class="list-group-item">{{ rec }}</li>
+            {% endfor %}
+          </ul>
+
+          {% if matched_skills %}
+            <p><strong>Matched skills:</strong> {{ matched_skills|join:", " }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <img src="{% static 'images/upload.jpg' %}" class="img-fluid mb-3" alt="Resume Upload">
+      <h5>Upload Your Resume</h5>
+      <p>Easily upload your resume to get instant role recommendations.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <img src="{% static 'images/skills.png' %}" class="img-fluid mb-3" alt="Skill Based">
+      <h5>Skill-Based Suggestions</h5>
+      <p>Enter your skills and discover matching career opportunities.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <img src="{% static 'images/future.png' %}" class="img-fluid mb-3" alt="Future Jobs">
+      <h5>Future Job Recommendations</h5>
+      <p>See trending jobs for your skill set and plan your career ahead.</p>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
