@@ -71,17 +71,8 @@ ai_career_advisor/
 - Keep columns: `role, skills (comma-separated), desc, salary_min, salary_max`.
 - Retrain using `src/train_classifier.py`.
 
-## 6) How to mention on your CV
 
-- **Title:** AI Career Advisor & Skill-Gap Analyzer (Python, FastAPI, scikit-learn)
-- **One-liners:**
-  - Built NLP pipeline (TF-IDF + LinearSVC) to classify resumes into 10+ roles with cross-validated F1.
-  - Implemented skill-gap detection using taxonomy matching; generated personalized learning roadmaps.
-  - Exposed REST endpoints with FastAPI; integrated with SQL/CSV data and joblib artifacts.
-  - Achieved X% macro-F1 on held-out set; inference latency ~Y ms.
-  - Containerized with Docker; deployed on Render/EC2 (optional).
-
-## 7) Optional Enhancements (for future work)
+## 6) Optional Enhancements (for future work)
 - Swap TF-IDF with transformer embeddings (e.g., Sentence-BERT) and cosine role matching.
 - Add salary band calibration by city/experience using quantile regression.
 - Plug into a Django/DRF backend as `/api/career/predict/` endpoint.
