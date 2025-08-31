@@ -133,4 +133,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'mauryakumkum224@gmail.com'         
 EMAIL_HOST_PASSWORD = 'qjvi rwrm wciq juvy'        
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+import os
+ALLOWED_HOSTS = ['ai_career_advisor.onrender.com']
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
